@@ -50,6 +50,7 @@
   background: transparent url(../images/Edit\ Button.svg) center no-repeat;
   width: 24px;
   height: 24px;
+  padding: 0;
   grid-area: button;
   border-style: solid;
   border-color: white;
@@ -66,6 +67,7 @@
   background: transparent url(../images/add-button.svg) center no-repeat;
   height: 50px;
   width: 150px;
+  padding: 0;
   margin-left: auto;
   border-style: solid;
   border-color: white;
