@@ -55,6 +55,11 @@
   border-color: white;
   border-radius: 2px;
   max-width: 150px;
+  transition: opacity 0.3 linear;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
 }
 
 .profile__add-button {
@@ -65,4 +70,9 @@
   border-style: solid;
   border-color: white;
   border-radius: 2px;
+  transition: opacity 0.3 linear;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
 }

@@ -55,7 +55,7 @@
 
 @media screen and (max-width: 600px) {
   .header {
-    width: 100%;
+    margin-top: 28px;
   }
 
   .profile {
@@ -71,11 +71,11 @@
     margin: 0;
     margin-top: 30px;
     margin-bottom: 36px;
+    gap: 14px 10px;
   }
 
   .profile__name {
     font-size: 22px;
-    margin-bottom: 14px;
   }
 
   .profile__bio {

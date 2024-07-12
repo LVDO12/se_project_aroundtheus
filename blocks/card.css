@@ -55,4 +55,9 @@
   width: 21px;
   background: transparent url(../images/Heart.svg) center no-repeat;
   border-style: none;
+  transition: opacity 0.3s linear;
+}
+
+.card__like-button:hover {
+  opacity: 0.5;
 }
