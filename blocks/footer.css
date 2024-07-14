@@ -12,3 +12,18 @@
   margin-top: 62px;
   margin-bottom: 60px;
 }
+
+@media screen and (max-width: 900px) {
+  .footer {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer__copy-right {
+    font-size: 14px;
+    margin-top: 48px;
+    margin-bottom: 36px;
+  }
+}

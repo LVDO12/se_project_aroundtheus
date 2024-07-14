@@ -10,3 +10,16 @@
 .header__logo {
   margin-bottom: 41px;
 }
+
+@media screen and (max-width: 900px) {
+  .header {
+    margin-top: 45px;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    margin-top: 28px;
+  }
+}

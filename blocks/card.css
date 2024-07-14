@@ -62,3 +62,10 @@
 .card__like-button:hover {
   opacity: 0.5;
 }
+
+@media screen and (max-width: 900px) {
+  .cards {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
