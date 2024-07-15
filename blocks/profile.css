@@ -52,10 +52,7 @@
   height: 24px;
   padding: 0;
   grid-area: button;
-  border-style: solid;
-  border-color: white;
-  border-radius: 2px;
-  max-width: 150px;
+  border: 1px solid white;
   transition: opacity 0.3 linear;
 }
 
@@ -69,8 +66,7 @@
   width: 150px;
   padding: 0;
   margin-left: auto;
-  border-style: solid;
-  border-color: white;
+  border: 2px solid white;
   border-radius: 2px;
   transition: opacity 0.3 linear;
 }
@@ -132,7 +128,7 @@
   }
 
   .profile__add-button {
-    background: transparent url(../images/Add\ Button.png) cover no-repeat;
+    background: transparent url(../images/add-button.svg) cover no-repeat;
     margin: auto 36px;
     width: 282px;
   }

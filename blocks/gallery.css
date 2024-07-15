@@ -1,0 +1,26 @@
+.gallery {
+  margin-top: 51px;
+}
+
+.gallery__list {
+  display: grid;
+  list-style-type: none;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, 282px);
+  grid-template-rows: auto;
+  grid-gap: 20px 17px;
+  justify-content: center;
+  margin: 0;
+}
+
+.gallery__card {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 900px) {
+  .gallery {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

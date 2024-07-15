@@ -2,7 +2,7 @@
   margin-top: 45px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-color: #545454;
+  border-color: rgb(84, 84, 84, 0.7);
   max-width: 880px;
   margin-bottom: 40px;
 }
@@ -13,13 +13,21 @@
 
 @media screen and (max-width: 900px) {
   .header {
-    margin-top: 45px;
     margin-bottom: 0;
+  }
+
+  .header__logo {
+    margin-left: 20px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .header {
     margin-top: 28px;
+  }
+
+  .header__logo {
+    margin-bottom: 32px;
+    margin-left: 27px;
   }
 }

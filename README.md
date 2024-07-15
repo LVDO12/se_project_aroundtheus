@@ -8,7 +8,9 @@
 
 **Intro**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+- Project name: Around The U.S.
+- Around The U.S is a website where user can share mutiple pictures of places around the U.S to people in the internet. User can also use Around The U.S to search and react others user's post.
+- Around The U.S is developed to be a responsive website.
 
 **Figma**
 
@@ -16,9 +18,13 @@ The design is from [Figma](https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/S
 
 **Images**
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster.
-
-Good luck and have fun!
+Responsive Web design media queries
+(file:///F:/Download/Image%20(1).png)
 
 **Video**
+
 This is the link to [my video](https://drive.google.com/file/d/1hwoZeOoVaPAZGaBLMHQUkAFlDJwd2lux/view?usp=sharing).
+
+**Navigate**
+
+Click [this](https://lvdo12.github.io/se_project_aroundtheus/) to be navigated to the website.
