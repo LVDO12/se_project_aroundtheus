@@ -18,7 +18,7 @@ The design is from [Figma](https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/S
 
 **Images**
 
-![Responsive Web design media queries](<file:///F:/Download/Image%20(1).png>)
+![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/Review.png)
 
 **Video**
 
