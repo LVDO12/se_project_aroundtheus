@@ -13,7 +13,7 @@
 .card__title {
   padding: 0;
   margin: 0;
-  font-family: nter, Arial, sans-serif;
+  font-family: Inter, Arial, sans-serif;
   font-size: 24px;
   font-weight: 900;
   line-height: 1.2;
@@ -35,6 +35,7 @@
   background: transparent url(../images/Heart.svg) center no-repeat;
   border-style: none;
   transition: opacity 0.3s linear;
+  cursor: pointer;
 }
 
 .card__like-button:hover {

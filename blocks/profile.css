@@ -6,8 +6,7 @@
 
 .profile__info {
   display: grid;
-  max-width: 415px;
-  width: 100%;
+  max-width: calc(100% - 40px);
   grid-template-areas:
     "name button"
     "bio bio";
@@ -33,6 +32,9 @@
   margin: 0;
   grid-area: name;
   text-wrap: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__bio {
@@ -54,6 +56,7 @@
   grid-area: button;
   border: 1px solid white;
   transition: opacity 0.3 linear;
+  cursor: pointer;
 }
 
 .profile__edit-button:hover {
@@ -69,6 +72,7 @@
   border: 2px solid white;
   border-radius: 2px;
   transition: opacity 0.3 linear;
+  cursor: pointer;
 }
 
 .profile__add-button:hover {
@@ -84,21 +88,20 @@
 
 @media screen and (max-width: 796px) {
   .profile__info {
-    max-width: 200px;
+    grid-template-columns: minmax(auto, 300px) auto;
   }
 
   .profile__name {
-    font-size: 28px;
+    font-size: 34px;
   }
 
   .profile__bio {
-    font-size: 17px;
+    font-size: 20px;
   }
 
   .profile__add-button {
     background: transparent url(../images/add-button.svg) cover no-repeat;
     width: 50px;
-    margin-right: 20px;
   }
 }
 
@@ -117,6 +120,7 @@
     margin-top: 30px;
     margin-bottom: 36px;
     gap: 14px 10px;
+    grid-template-columns: minmax(auto, 196px) auto;
   }
 
   .profile__name {
@@ -125,6 +129,11 @@
 
   .profile__bio {
     font-size: 14px;
+  }
+
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
   }
 
   .profile__add-button {
