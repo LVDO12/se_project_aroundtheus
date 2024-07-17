@@ -46,6 +46,11 @@
   text-align: left;
   margin: 0;
   max-width: 415px;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 }
 
 .profile__edit-button {
@@ -96,7 +101,7 @@
   }
 
   .profile__bio {
-    font-size: 20px;
+    font-size: 15px;
     max-width: 324px;
   }
 
