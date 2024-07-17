@@ -31,10 +31,10 @@
   text-align: left;
   margin: 0;
   grid-area: name;
-  text-wrap: nowrap;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .profile__bio {
@@ -46,11 +46,9 @@
   text-align: left;
   margin: 0;
   max-width: 415px;
-  text-wrap: nowrap;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
 }
 
 .profile__edit-button {
