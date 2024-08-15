@@ -12,7 +12,11 @@
   display: none;
 }
 
-.modal_opened {
+.model_close {
+  display: none;
+}
+
+.modal_open {
   display: flex;
 }
 
@@ -57,7 +61,7 @@
   height: 27px;
 }
 
-.modal__button_save {
+.modal__save-button {
   background-color: #000000;
   color: #ffffff;
   height: 50px;
@@ -74,11 +78,11 @@
   cursor: pointer;
 }
 
-.modal__button_save:hover {
+.modal__save-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.modal__button_close {
+.modal__close-button {
   background-color: transparent;
   background-image: url(../images/close.png);
   background-size: cover;
@@ -94,7 +98,7 @@
   cursor: pointer;
 }
 
-.modal__button_close:hover {
+.modal__close-button:hover {
   opacity: 60%;
 }
 
@@ -111,12 +115,12 @@
     padding: 22px 25px;
   }
 
-  .modal__button_save {
+  .modal__save-button {
     font-size: 14px;
     line-height: 16.94px;
   }
 
-  .modal__button_close {
+  .modal__close-button {
     height: 26px;
     width: 26px;
     right: 0;
