@@ -18,11 +18,12 @@
 The design is from [Figma](https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/Sprint-3_-Around-the-US?node-id=0-1&t=388OIRPTHCSxcg3A-0)
 
 **Images**
--Responsive Web design
-![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/Review.png)
+
+- Responsive Web design
+  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/Review.png)
 
 - Customizable profile name and bio
-  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/Review2.png)
+  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/review2.png)
 
 **Video**
 
