@@ -11,6 +11,7 @@
 - Project name: Around The U.S.
 - Around The U.S is a website where user can share mutiple pictures of places around the U.S to people in the internet. User can also use Around The U.S to search and react others user's post.
 - Around The U.S is developed to be a responsive website.
+- Around The U.S now can chage user's name and bio.
 
 **Figma**
 
