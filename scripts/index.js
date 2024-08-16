@@ -31,8 +31,8 @@ const editPopupCloseButton = document.querySelector(".modal__close-button");
 const editPopupForm = document.forms["edit-profile-form"];
 const profileName = document.querySelector(".profile__name");
 const profileBio = document.querySelector(".profile__bio");
-const inputName = document.querySelector("#profile-name-input");
-const inputBio = document.querySelector("#profile-bio-input");
+const inputName = document.querySelector("#name-input");
+const inputBio = document.querySelector("#bio-input");
 const cardListEl = document.querySelector(".gallery__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
