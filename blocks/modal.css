@@ -12,10 +12,6 @@
   display: none;
 }
 
-.model_close {
-  display: none;
-}
-
 .modal_open {
   display: flex;
 }

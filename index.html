@@ -48,20 +48,22 @@
       <div class="modal__container">
         <p class="modal__title">Edit profile</p>
         <button class="modal__button modal__close-button"></button>
-        <form class="modal__form">
+        <form name="edit-profile-form" class="modal__form">
           <input
             type="text"
             name="name"
-            class="modal__form modal__form_input"
+            class="modal__form_input"
             placeholder="Name"
-            id="profile-name-input"
+            id="name-input"
+            required
           />
           <input
             type="text"
             name="bio"
-            class="modal__form modal__form_input"
+            class="modal__form_input"
             placeholder="Bio"
-            id="profile-bio-input"
+            id="bio-input"
+            required
           />
           <button class="modal__button modal__save-button">Save</button>
         </form>
