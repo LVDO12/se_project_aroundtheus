@@ -46,3 +46,24 @@
 .card__like-button:hover {
   opacity: 0.5;
 }
+
+.card__like-button_active {
+  background-image: url(../images/activelive.png);
+}
+
+.card__delete-button {
+  background: transparent url(../images/trash.png) center no-repeat;
+  padding: 0;
+  height: 19px;
+  width: 18px;
+  position: relative;
+  left: 249px;
+  top: 38px;
+  border-style: none;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  opacity: 0.5;
+}
