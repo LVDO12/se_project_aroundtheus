@@ -62,7 +62,6 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
-  const imagePopupOpener = cardElement.querySelector(".card__image");
 
   // Card Buttons
   const likeButton = cardElement.querySelector(".card__like-button");
@@ -78,7 +77,7 @@ function getCardElement(data) {
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
 
-  imagePopupOpener.addEventListener("click", () => {
+  cardImage.addEventListener("click", () => {
     openModal(imagePopup);
     image.src = data.link;
     image.alt = data.name;
