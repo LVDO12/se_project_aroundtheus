@@ -112,6 +112,8 @@ editPopupForm.addEventListener("submit", function (event) {
 // Add card modal
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
+  inputTitle.textContent = "";
+  inputLink.textContent = "";
 });
 addCardPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
