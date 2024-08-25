@@ -113,8 +113,6 @@ editPopupForm.addEventListener("submit", function (event) {
 // Add card modal
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
-  inputTitle.value = "";
-  inputLink.value = "";
 });
 addCardPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -123,6 +121,8 @@ addCardPopupForm.addEventListener("submit", (event) => {
     link: inputLink.value,
   };
   renderCard(newCard, "prepend");
+  inputTitle.value = "";
+  inputLink.value = "";
   closeModal(addCardPopup);
 });
 // Initial cards
