@@ -45,7 +45,7 @@ const imagePopup = document.querySelector("#open-image-modal");
 const image = imagePopup.querySelector(".modal__image");
 const imageCaption = imagePopup.querySelector(".modal__image-caption");
 //
-
+//
 // Buttons
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
@@ -55,14 +55,13 @@ closeButtons.forEach((closeButton) => {
   closeButton.addEventListener("click", () => closeModal(popup));
 });
 //
-
+//
 // Function
 function getCardElement(data) {
   // Wrapper
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
-
   // Card Buttons
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
@@ -72,11 +71,10 @@ function getCardElement(data) {
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
   });
-
+  // Card Content
   cardImage.src = data.link;
   cardImage.alt = data.name;
   cardTitle.textContent = data.name;
-
   cardImage.addEventListener("click", () => {
     openModal(imagePopup);
     image.src = data.link;
@@ -85,18 +83,21 @@ function getCardElement(data) {
   });
   return cardElement;
 }
+
 function closeModal(modal) {
   modal.classList.remove("modal_open");
 }
+
 function openModal(modal) {
   modal.classList.add("modal_open");
 }
+
 function renderCard(item, method = "append") {
   const cardElement = getCardElement(item);
   cardListEl[method](cardElement);
 }
 //
-
+//
 // Edit profile modal
 editProfileButton.addEventListener("click", () => {
   inputName.value = profileName.textContent;
@@ -112,8 +113,8 @@ editPopupForm.addEventListener("submit", function (event) {
 // Add card modal
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
-  inputTitle.textContent = "";
-  inputLink.textContent = "";
+  inputTitle.value = "";
+  inputLink.value = "";
 });
 addCardPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
