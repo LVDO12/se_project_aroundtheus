@@ -45,6 +45,18 @@ const imagePopup = document.querySelector("#open-image-modal");
 const image = imagePopup.querySelector(".modal__image");
 const imageCaption = imagePopup.querySelector(".modal__image-caption");
 //
+// Validation
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button-inactive",
+  inputErrorClass: "modal__input_type-error",
+  errorClass: "modal__input-error",
+};
+
+enableValidation(config);
+//
 //
 // Buttons
 const editProfileButton = document.querySelector(".profile__edit-button");
@@ -56,7 +68,7 @@ closeButtons.forEach((closeButton) => {
 });
 //
 // import
-
+import { enableValidation } from "./validate.js";
 //
 //
 // Function
@@ -80,12 +92,40 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   cardImage.addEventListener("click", () => {
     openModal(imagePopup);
+    closeOverlay();
     image.src = data.link;
     image.alt = data.name;
     imageCaption.textContent = data.name;
   });
   return cardElement;
 }
+
+function renderCard(item, method = "append") {
+  const cardElement = getCardElement(item);
+  cardListEl[method](cardElement);
+}
+
+const handleKeydown = (evt) => {
+  if (evt.key === "Escape") {
+    const overlays = document.querySelectorAll(".modal");
+    overlays.forEach((overlay) => {
+      closeModal(overlay);
+    });
+    document.removeEventListener("keydown", handleKeydown);
+  }
+};
+
+const closeOverlay = () => {
+  const overlays = document.querySelectorAll(".modal");
+  document.addEventListener("keydown", handleKeydown);
+  overlays.forEach((overlay) => {
+    overlay.addEventListener("click", (evt) => {
+      if (evt.target.classList.contains("modal_open")) {
+        closeModal(overlay);
+      }
+    });
+  });
+};
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
@@ -95,10 +135,6 @@ function openModal(modal) {
   modal.classList.add("modal_open");
 }
 
-function renderCard(item, method = "append") {
-  const cardElement = getCardElement(item);
-  cardListEl[method](cardElement);
-}
 //
 //
 // Edit profile modal
@@ -106,6 +142,8 @@ editProfileButton.addEventListener("click", () => {
   inputName.value = profileName.textContent;
   inputBio.value = profileBio.textContent;
   openModal(editPopup);
+  enableValidation(config);
+  closeOverlay();
 });
 editPopupForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -116,6 +154,8 @@ editPopupForm.addEventListener("submit", function (event) {
 // Add card modal
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
+  enableValidation(config);
+  closeOverlay();
 });
 addCardPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -130,4 +170,8 @@ addCardPopupForm.addEventListener("submit", (event) => {
 // Initial cards
 initialCards.forEach((data) => {
   renderCard(data);
+});
+// Enable Validation
+document.addEventListener("DOMContentLoaded", () => {
+  enableValidation(config);
 });

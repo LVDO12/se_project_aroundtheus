@@ -57,8 +57,8 @@
         <p class="modal__title">Edit profile</p>
         <button class="modal__button modal__close-button"></button>
         <form name="profile-form" class="modal__form" novalidate>
-          <fieldset class="modal__form__set">
-            <label class="modal__form__field">
+          <fieldset class="modal__form-set">
+            <label class="modal__form-field">
               <input
                 type="text"
                 name="name"
@@ -71,7 +71,7 @@
               />
               <span class="modal__input-error name-input-error"></span>
             </label>
-            <label class="modal__form__field">
+            <label class="modal__form-field">
               <input
                 type="text"
                 name="bio"
@@ -95,8 +95,8 @@
         <p class="modal__title">New Place</p>
         <button class="modal__button modal__close-button"></button>
         <form name="card-form" class="modal__form" novalidate>
-          <fieldset class="modal__form__set">
-            <label class="modal__form__field">
+          <fieldset class="modal__form-set">
+            <label class="modal__form-field">
               <input
                 type="text"
                 name="name"
@@ -109,7 +109,7 @@
               />
               <span class="modal__input-error title-input-error"></span>
             </label>
-            <label class="modal__form__field">
+            <label class="modal__form-field">
               <input
                 type="url"
                 name="bio"
@@ -139,7 +139,7 @@
     <template id="card-template">
       <li class="card">
         <button class="card__delete-button" type="button"></button>
-        <img src="" alt="" class="card__image" />
+        <img src="" alt="" class="card__image" id="validation-modal" />
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button class="card__like-button" type="button"></button>
@@ -147,7 +147,7 @@
       </li>
     </template>
 
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validate.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/validate.js"></script>
   </body>
 </html>
