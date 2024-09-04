@@ -55,6 +55,9 @@ closeButtons.forEach((closeButton) => {
   closeButton.addEventListener("click", () => closeModal(popup));
 });
 //
+// import
+
+//
 //
 // Function
 function getCardElement(data) {
@@ -121,8 +124,7 @@ addCardPopupForm.addEventListener("submit", (event) => {
     link: inputLink.value,
   };
   renderCard(newCard, "prepend");
-  inputTitle.value = "";
-  inputLink.value = "";
+  addCardPopupForm.reset();
   closeModal(addCardPopup);
 });
 // Initial cards

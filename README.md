@@ -10,8 +10,10 @@
 
 - Project name: Around The U.S.
 - Around The U.S is a website where user can share mutiple pictures of places around the U.S to people in the internet. User can also use Around The U.S to search and react others user's post.
-- Around The U.S is developed to be a responsive website.
-- Around The U.S now can chage user's name and bio.
+- Around The U.S's features:
+  - Responsive website.
+  - Fuctional buttons.
+  - Validated form.
 
 **Figma**
 
@@ -24,6 +26,9 @@ The design is from [Figma](https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/S
 
 - Customizable profile name and bio
   ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/review2.png)
+
+- Validatiing form function
+  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/validate.png)
 
 **Video**
 
