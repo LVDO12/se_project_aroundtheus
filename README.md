@@ -27,7 +27,7 @@ The design is from [Figma](https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/S
 - Customizable profile name and bio
   ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/review2.png)
 
-- Validatiing form function
+- Validating form function
   ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/validate.png)
 
 **Video**
