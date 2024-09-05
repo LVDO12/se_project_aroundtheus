@@ -62,7 +62,6 @@ const enableValidation = (options) => {
   formList.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      formElement.reset();
     });
     const fieldsetList = Array.from(
       formElement.querySelectorAll(".modal__form-set")

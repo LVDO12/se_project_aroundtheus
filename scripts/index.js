@@ -55,7 +55,6 @@ const config = {
   errorClass: "modal__input-error",
 };
 
-enableValidation(config);
 //
 //
 // Buttons
@@ -97,6 +96,7 @@ function getCardElement(data) {
     image.alt = data.name;
     imageCaption.textContent = data.name;
   });
+  console.log(cardElement);
   return cardElement;
 }
 
