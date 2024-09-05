@@ -72,14 +72,4 @@ const enableValidation = (options) => {
   });
 };
 
-const config = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button-inactive",
-  inputErrorClass: "modal__input_type-error",
-  errorClass: "modal__input-error",
-};
-
-enableValidation(config);
 export { enableValidation };

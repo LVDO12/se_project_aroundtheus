@@ -91,12 +91,10 @@ function getCardElement(data) {
   cardTitle.textContent = data.name;
   cardImage.addEventListener("click", () => {
     openModal(imagePopup);
-    closeOverlay();
     image.src = data.link;
     image.alt = data.name;
     imageCaption.textContent = data.name;
   });
-  console.log(cardElement);
   return cardElement;
 }
 
@@ -111,13 +109,12 @@ const handleKeydown = (evt) => {
     overlays.forEach((overlay) => {
       closeModal(overlay);
     });
-    document.removeEventListener("keydown", handleKeydown);
   }
+  document.removeEventListener("keydown", handleKeydown);
 };
 
 const closeOverlay = () => {
   const overlays = document.querySelectorAll(".modal");
-  document.addEventListener("keydown", handleKeydown);
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("modal_open")) {
@@ -133,6 +130,7 @@ function closeModal(modal) {
 
 function openModal(modal) {
   modal.classList.add("modal_open");
+  document.addEventListener("keydown", handleKeydown);
 }
 
 //
@@ -143,7 +141,6 @@ editProfileButton.addEventListener("click", () => {
   inputBio.value = profileBio.textContent;
   openModal(editPopup);
   enableValidation(config);
-  closeOverlay();
 });
 editPopupForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -155,7 +152,6 @@ editPopupForm.addEventListener("submit", function (event) {
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
   enableValidation(config);
-  closeOverlay();
 });
 addCardPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -175,3 +171,4 @@ initialCards.forEach((data) => {
 document.addEventListener("DOMContentLoaded", () => {
   enableValidation(config);
 });
+closeOverlay();
