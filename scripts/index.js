@@ -47,6 +47,7 @@ const imageCaption = imagePopup.querySelector(".modal__image-caption");
 //
 // Validation
 const config = {
+  fieldSelector: ".modal__form-set",
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__save-button",
@@ -110,7 +111,6 @@ const handleKeydown = (evt) => {
       closeModal(overlay);
     });
   }
-  document.removeEventListener("keydown", handleKeydown);
 };
 
 const closeOverlay = () => {
@@ -126,6 +126,7 @@ const closeOverlay = () => {
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
+  document.removeEventListener("keydown", handleKeydown);
 }
 
 function openModal(modal) {
@@ -140,7 +141,6 @@ editProfileButton.addEventListener("click", () => {
   inputName.value = profileName.textContent;
   inputBio.value = profileBio.textContent;
   openModal(editPopup);
-  enableValidation(config);
 });
 editPopupForm.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -151,7 +151,6 @@ editPopupForm.addEventListener("submit", function (event) {
 // Add card modal
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopup);
-  enableValidation(config);
 });
 addCardPopupForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -167,8 +166,6 @@ addCardPopupForm.addEventListener("submit", (event) => {
 initialCards.forEach((data) => {
   renderCard(data);
 });
-// Enable Validation
-document.addEventListener("DOMContentLoaded", () => {
-  enableValidation(config);
-});
+
+enableValidation(config);
 closeOverlay();

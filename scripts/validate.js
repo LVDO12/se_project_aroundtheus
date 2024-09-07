@@ -27,6 +27,7 @@ const checkInputValidity = (formElement, inputElement, options) => {
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
+    console.log(inputElement);
     return !inputElement.validity.valid;
   });
 };
@@ -46,9 +47,7 @@ const setEventListener = (formElement, options) => {
     formElement.querySelectorAll(options.inputSelector)
   );
   const buttonElement = formElement.querySelector(options.submitButtonSelector);
-
   toggleButtonState(inputList, buttonElement, options);
-
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, options);
@@ -64,7 +63,7 @@ const enableValidation = (options) => {
       evt.preventDefault();
     });
     const fieldsetList = Array.from(
-      formElement.querySelectorAll(".modal__form-set")
+      formElement.querySelectorAll(options.fieldSelector)
     );
     fieldsetList.forEach((fieldset) => {
       setEventListener(fieldset, options);
