@@ -1,3 +1,7 @@
+// import
+import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
+//
 // Wrapper
 const initialCards = [
   {
@@ -26,6 +30,7 @@ const initialCards = [
   },
 ];
 const cardListEl = document.querySelector(".gallery__list");
+const overlays = document.querySelectorAll(".modal");
 // Profile Popup
 const profileName = document.querySelector(".profile__name");
 const profileBio = document.querySelector(".profile__bio");
@@ -44,7 +49,7 @@ const image = imagePopup.querySelector(".modal__image");
 const imageCaption = imagePopup.querySelector(".modal__image-caption");
 //
 // Validation
-const formList = Array.from(document.querySelectorAll(".modal__form"));
+const formValidators = {};
 const config = {
   fieldSelector: ".modal__form-set",
   formSelector: ".modal__form",
@@ -54,7 +59,6 @@ const config = {
   inputErrorClass: "modal__input_type-error",
   errorClass: "modal__input-error",
 };
-
 //
 //
 // Buttons
@@ -65,30 +69,30 @@ closeButtons.forEach((closeButton) => {
   const popup = closeButton.closest(".modal");
   closeButton.addEventListener("click", () => closeModal(popup));
 });
-
-//
-// import
-import FormValidator from "../components/FormValidator.js";
-import Card from "../components/Card.js";
 //
 //
+// function
+//
+//
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute(`name`);
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
 
 const handleImageClick = (data) => {
   openModal(imagePopup);
-  image.src = data._link;
-  image.alt = data._name;
-  imageCaption.textContent = data._name;
-};
-
-const disableSubmitButton = (modal) => {
-  const submitButton = modal.querySelector(config.submitButtonSelector);
-  submitButton.classList.add(config.inactiveButtonClass);
-  submitButton.disabled = true;
+  image.src = data.link;
+  image.alt = data.name;
+  imageCaption.textContent = data.name;
 };
 
 const handleKeydown = (evt) => {
   if (evt.key === "Escape") {
-    const overlays = document.querySelectorAll(".modal");
     overlays.forEach((overlay) => {
       closeModal(overlay);
     });
@@ -96,7 +100,6 @@ const handleKeydown = (evt) => {
 };
 
 const closeOverlay = () => {
-  const overlays = document.querySelectorAll(".modal");
   overlays.forEach((overlay) => {
     overlay.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("modal_open")) {
@@ -105,6 +108,15 @@ const closeOverlay = () => {
     });
   });
 };
+
+function createCard(data, method) {
+  const cardElement = new Card(
+    data,
+    "#card-template",
+    handleImageClick
+  ).generateCard();
+  cardListEl[method](cardElement);
+}
 
 function closeModal(modal) {
   modal.classList.remove("modal_open");
@@ -122,12 +134,12 @@ editProfileButton.addEventListener("click", () => {
   inputName.value = profileName.textContent;
   inputBio.value = profileBio.textContent;
   openModal(editPopup);
+  formValidators[editPopupForm.getAttribute("name")].resetValidation();
 });
 editPopupForm.addEventListener("submit", function (event) {
   event.preventDefault();
   profileName.textContent = inputName.value;
   profileBio.textContent = inputBio.value;
-  disableSubmitButton(editPopup);
   closeModal(editPopup);
 });
 // Add card modal
@@ -140,24 +152,14 @@ addCardPopupForm.addEventListener("submit", (event) => {
     name: inputTitle.value,
     link: inputLink.value,
   };
-  const newCardElemnt = new Card(
-    newCard,
-    "#card-template",
-    handleImageClick
-  ).generateCard();
-  cardListEl.prepend(newCardElemnt);
+  createCard(newCard, `prepend`);
   addCardPopupForm.reset();
-  disableSubmitButton(addCardPopup);
+  formValidators[addCardPopupForm.getAttribute("name")].resetValidation();
   closeModal(addCardPopup);
 });
 // Initial cards
 initialCards.forEach((data) => {
-  const card = new Card(data, "#card-template", handleImageClick);
-  const cardElement = card.generateCard();
-  cardListEl.append(cardElement);
+  createCard(data, `append`);
 });
-formList.forEach((formElement) => {
-  const formValidate = new FormValidator(config, formElement);
-  formValidate.enableValidation();
-});
+enableValidation(config);
 closeOverlay();
