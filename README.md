@@ -22,13 +22,13 @@ The design is from [Figma](https://www.figma.com/design/Es8zZP3ARGH9JGcw60i3OD/S
 **Images**
 
 - Responsive Web design
-  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/Review.png)
+  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/src/images/Review.png)
 
 - Customizable profile name and bio
-  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/review2.png)
+  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/src/images/review2.png)
 
 - Validating form function
-  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/images/validate.png)
+  ![Responsive Web design media queries](https://github.com/LVDO12/se_project_aroundtheus/blob/main/src/images/validate.png)
 
 **Video**
 
