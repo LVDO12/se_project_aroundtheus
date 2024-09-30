@@ -6,7 +6,6 @@
     <meta name="author" content="Long Vu" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Around The U.S</title>
-    <link rel="stylesheet" href="pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
 
@@ -14,7 +13,7 @@
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/Vector.svg"
+          src="<%=require('./images/Vector.svg')%>"
           alt="Around the US's logo"
           class="header__logo"
         />
@@ -24,7 +23,7 @@
         <section class="profile page__section">
           <img
             class="profile__picture"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Profile picture"
           />
           <div class="profile__info">
@@ -146,9 +145,5 @@
         </div>
       </li>
     </template>
-
-    <script type="module" src="./pages/index.js"></script>
-    <script type="module" src="./components/Card.js"></script>
-    <script type="module" src="./components/FormValidator.js"></script>
   </body>
 </html>
