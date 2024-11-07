@@ -14,4 +14,8 @@ export default class Section {
   addItem(method, element) {
     this._container[method](element);
   }
+
+  setItem(data) {
+    this._rendereredItems = data;
+  }
 }

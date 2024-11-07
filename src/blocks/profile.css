@@ -21,6 +21,39 @@
   height: 120px;
   width: 120px;
   border-radius: 50%;
+  z-index: 999;
+}
+
+.profile__picture__image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+}
+
+.profile-picture__edit-button {
+  background: transparent url(../images/editProfileHover.png) center no-repeat;
+  border-style: none;
+  height: 26px;
+  width: 26px;
+  display: flex;
+  position: absolute;
+  justify-items: center;
+  z-index: 998;
+  left: 47px;
+  top: 47px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-out, visibility 0s 0.2s;
+}
+
+.profile__picture:hover {
+  opacity: 0.8;
+}
+
+.profile-picture__edit-button_active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.2s ease-out;
 }
 
 .profile__name {

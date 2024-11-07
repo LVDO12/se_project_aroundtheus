@@ -4,6 +4,7 @@ export default class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
     this._handleCloseOnClick = this._handleCloseOnClick.bind(this);
     this._closeButton = this._popupElt.querySelector(".modal__close-button");
+    this._saveButton = this._popupElt.querySelector(".modal__save-button");
   }
 
   open() {
@@ -28,6 +29,14 @@ export default class Popup {
       evt.target === this._closeButton
     ) {
       this.close();
+    }
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._saveButton.textContent = "Saving...";
+    } else {
+      this._saveButton.textContent = "Save";
     }
   }
 

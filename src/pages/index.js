@@ -6,46 +6,83 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
+import ProfilePicEvt from "../components/ProfilePicEvt.js";
 import {
-  initialCards,
   config,
   editProfileButton,
+  editProfilePictureButton,
   addCardButton,
+  profilePicture,
 } from "../utils/constants.js";
+import { api } from "../components/Api.js";
+let gallery;
 //Add Card Popup Form
 const addCardPopupForm = new PopupWithForm("#add-card-modal", {
   handleSubmitEvent: (inputValues) => {
-    const newCard = {
-      name: inputValues.name,
-      link: inputValues.bio,
-    };
-    const cardElement = createCard(newCard);
-    gallery.addItem(`prepend`, cardElement);
+    addCardPopupForm.renderLoading(true);
+    api
+      .addCard(inputValues)
+      .then((inputValues) => {
+        const cardElement = createCard(inputValues);
+        gallery.addItem(`prepend`, cardElement);
+        addCardPopupForm.renderLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        addCardPopupForm.renderLoading(false);
+      });
     addCardPopupForm.form.reset();
   },
 });
 // Edit Popup Form
 const editPopupForm = new PopupWithForm("#edit-profile-modal", {
   handleSubmitEvent: (inputValues) => {
-    userInfo.setUserInfo({ name: inputValues.name, job: inputValues.bio });
+    editPopupForm.renderLoading(true);
+    api
+      .updateUserInfo(inputValues)
+      .then((inputValues) => {
+        userInfo.setUserInfo({
+          name: inputValues.name,
+          job: inputValues.about,
+        });
+        editPopupForm.renderLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        editPopupForm.renderLoading(false);
+      });
   },
 });
 const nameInput = editPopupForm.form.querySelector('input[name="name"]');
 const jobInput = editPopupForm.form.querySelector('input[name="bio"]');
-const userInfo = new UserInfo(".profile__name", ".profile__bio");
+const userInfo = new UserInfo(
+  ".profile__name",
+  ".profile__bio",
+  ".profile__picture__image"
+);
+// Edit profile popup form
+const editProfilePictureForm = new PopupWithForm(
+  "#edit-profile-picture-modal",
+  {
+    handleSubmitEvent: (inputValues) => {
+      api
+        .updateUserPic(inputValues)
+        .then((data) => {
+          userInfo.setUserPic({ avatar: data.avatar });
+          editProfilePictureForm.renderLoading(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          editProfilePictureForm.renderLoading(false);
+        });
+    },
+  }
+);
+
+const profilePictureEvent = new ProfilePicEvt(profilePicture);
+profilePictureEvent.addEventListener();
 // Image Review Popup
 const popupWithImage = new PopupWithImage("#open-image-modal");
-// Image Gallery
-const gallery = new Section(
-  {
-    data: initialCards,
-    renderer: (item) => {
-      const cardElement = createCard(item);
-      gallery.addItem(`append`, cardElement);
-    },
-  },
-  ".gallery__list"
-);
 //Validator
 const formValidators = {};
 //
@@ -73,14 +110,38 @@ const createCard = (data) => {
   ).generateCard();
   return cardElement;
 };
+//
+userInfo.fetchAndSetUserInfo();
 
+api.getInitialCards().then((initialCards) => {
+  gallery = new Section(
+    {
+      data: initialCards,
+      renderer: (item) => {
+        const cardElement = createCard(item);
+        gallery.addItem(`append`, cardElement);
+      },
+    },
+    ".gallery__list"
+  );
+  gallery.renderItems();
+});
 // Edit profile modal
 editProfileButton.addEventListener("click", () => {
-  const userInfoData = userInfo.getUserInfo();
-  nameInput.value = userInfoData.name;
-  jobInput.value = userInfoData.job;
-  editPopupForm.open();
-  formValidators[editPopupForm.form.getAttribute("name")].resetValidation();
+  api.getUserInfo().then((data) => {
+    nameInput.value = data.name;
+    jobInput.value = data.about;
+    editPopupForm.open();
+    formValidators[editPopupForm.form.getAttribute("name")].resetValidation();
+  });
+});
+
+//Edit profile picture modal
+editProfilePictureButton.addEventListener("click", () => {
+  editProfilePictureForm.open();
+  formValidators[
+    editProfilePictureForm.form.getAttribute("name")
+  ].resetValidation();
 });
 
 // Add card modal
@@ -89,5 +150,4 @@ addCardButton.addEventListener("click", () => {
   formValidators[addCardPopupForm.form.getAttribute("name")].resetValidation();
 });
 //Renderer
-gallery.renderItems();
 enableValidation(config);
