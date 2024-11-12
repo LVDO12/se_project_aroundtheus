@@ -154,10 +154,22 @@
     margin-bottom: 75px;
   }
 
+  .modal-delete__title {
+    margin-bottom: 38px;
+  }
+
   .modal__container {
     height: 322px;
     width: 282px;
     padding: 22px 25px;
+  }
+
+  .modal_profile-picture__container {
+    height: 272px;
+  }
+
+  .modal_delete__container {
+    height: 181px;
   }
 
   .modal__save-button {

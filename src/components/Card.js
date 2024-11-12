@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(data, cardSelector, handleImageClick, api, deletePopupForm) {
+  constructor(data, cardSelector, handleImageClick, api, handleDeleteButton) {
     this._data = data;
     this.link = data.link;
     this.name = data.name;
@@ -11,7 +11,7 @@ export default class Card {
     this._deleteButton = data.deleteButton;
     this._handleImageClick = handleImageClick;
     this._api = api;
-    this._deletePopupForm = deletePopupForm;
+    this._handleDeleteButton = handleDeleteButton;
   }
 
   _getCardTemplate() {
@@ -50,42 +50,22 @@ export default class Card {
         .removeLike(this._id)
         .then(() => {
           this._likeButton.classList.toggle("card__like-button_active");
+          this.isLiked = false;
         })
         .catch((err) => {
           console.log(err);
         });
-      this.isLiked = false;
     } else {
       this._api
         .addLike(this._id)
         .then(() => {
           this._likeButton.classList.toggle("card__like-button_active");
+          this.isLiked = true;
         })
         .catch((err) => {
           console.log(err);
         });
-      this.isLiked = true;
     }
-  }
-
-  _handleDeleteButton() {
-    this._deletePopupForm.open(() => this._handleConfirmDelete());
-  }
-
-  _handleConfirmDelete() {
-    this._deletePopupForm.renderLoading(true);
-    this._api
-      .deleteCard(this._id)
-      .then(() => {
-        this._element.remove();
-        console.log("This post has been deleted");
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        this._deletePopupForm.renderLoading(false);
-      });
   }
 
   _setEventListeners() {
@@ -93,7 +73,7 @@ export default class Card {
       this._handleLikeButton();
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteButton();
+      this._handleDeleteButton(this._element, this._id);
     });
     this._cardImageElement.addEventListener("click", () => {
       this._handleImageClick(this);

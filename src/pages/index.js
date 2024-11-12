@@ -38,6 +38,7 @@ const addCardPopupForm = new PopupWithForm("#add-card-modal", {
         const cardElement = createCard(inputValues);
         gallery.addItem(`prepend`, cardElement);
         addCardPopupForm.form.reset();
+        addCardPopupForm.close();
       })
       .catch((err) => {
         console.log(err);
@@ -58,6 +59,7 @@ const editPopupForm = new PopupWithForm("#edit-profile-modal", {
           name: inputValues.name,
           job: inputValues.about,
         });
+        editPopupForm.close();
       })
       .catch((err) => {
         console.log(err);
@@ -86,6 +88,7 @@ const editProfilePictureForm = new PopupWithForm(
         .updateUserPic(inputValues)
         .then((data) => {
           userInfo.setUserPic({ avatar: data.avatar });
+          editProfilePictureForm.close();
         })
         .catch((err) => {
           console.log(err);
@@ -119,13 +122,30 @@ const handleImageClick = (data) => {
   popupWithImage.open(data.link, data.name);
 };
 
+const handleDeleteButton = (cardElt, cardId) => {
+  deletePopupForm.open(() => {
+    deletePopupForm.renderLoading(true);
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        cardElt.remove();
+        console.log("This post has been deleted");
+        deletePopupForm.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        deletePopupForm.renderLoading(false);
+      });
+  });
+};
+
 const createCard = (data) => {
   const cardElement = new Card(
     data,
     "#card-template",
     handleImageClick,
     api,
-    deletePopupForm
+    handleDeleteButton
   ).generateCard();
   return cardElement;
 };

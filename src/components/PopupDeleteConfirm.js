@@ -22,10 +22,15 @@ export default class PopupDeleteConfirm extends Popup {
 
   renderLoading(isLoading) {
     if (isLoading) {
-      this._saveButton.textContent = "Saving...";
+      this._saveButton.textContent = "Deleting...";
     } else {
-      this._saveButton.textContent = "Save";
+      this._saveButton.textContent = "Yes";
     }
+  }
+
+  resetEventListener() {
+    super.resetEventListener();
+    this._confirmButton.removeEventListener("click", this._confirmHandler);
   }
 
   setEventListener() {

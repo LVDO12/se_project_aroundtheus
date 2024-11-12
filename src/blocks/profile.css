@@ -158,6 +158,9 @@
     gap: 14px 10px;
     grid-template-columns: minmax(auto, 196px) auto;
   }
+  .profile-picture__edit-button {
+    left: calc(50% - 13px);
+  }
 
   .profile__name {
     font-size: 22px;
