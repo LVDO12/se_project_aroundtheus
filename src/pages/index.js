@@ -4,6 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupDeleteConfirm from "../components/PopupDeleteConfirm.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import ProfilePicEvt from "../components/ProfilePicEvt.js";
@@ -14,8 +15,19 @@ import {
   addCardButton,
   profilePicture,
 } from "../utils/constants.js";
-import { api } from "../components/Api.js";
+import Api from "../components/Api.js";
+
 let gallery;
+//Api
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "18e5622e-036d-433d-8e74-a9c800df5400",
+    "Content-Type": "application/json",
+  },
+});
+//Add Delete Popup Form
+const deletePopupForm = new PopupDeleteConfirm("#delete-card-modal");
 //Add Card Popup Form
 const addCardPopupForm = new PopupWithForm("#add-card-modal", {
   handleSubmitEvent: (inputValues) => {
@@ -25,13 +37,14 @@ const addCardPopupForm = new PopupWithForm("#add-card-modal", {
       .then((inputValues) => {
         const cardElement = createCard(inputValues);
         gallery.addItem(`prepend`, cardElement);
-        addCardPopupForm.renderLoading(false);
+        addCardPopupForm.form.reset();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
         addCardPopupForm.renderLoading(false);
       });
-    addCardPopupForm.form.reset();
   },
 });
 // Edit Popup Form
@@ -45,10 +58,11 @@ const editPopupForm = new PopupWithForm("#edit-profile-modal", {
           name: inputValues.name,
           job: inputValues.about,
         });
-        editPopupForm.renderLoading(false);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
         editPopupForm.renderLoading(false);
       });
   },
@@ -58,21 +72,25 @@ const jobInput = editPopupForm.form.querySelector('input[name="bio"]');
 const userInfo = new UserInfo(
   ".profile__name",
   ".profile__bio",
-  ".profile__picture__image"
+  ".profile__picture__image",
+  api
 );
+
 // Edit profile popup form
 const editProfilePictureForm = new PopupWithForm(
   "#edit-profile-picture-modal",
   {
     handleSubmitEvent: (inputValues) => {
+      editProfilePictureForm.renderLoading(true);
       api
         .updateUserPic(inputValues)
         .then((data) => {
           userInfo.setUserPic({ avatar: data.avatar });
-          editProfilePictureForm.renderLoading(true);
         })
         .catch((err) => {
           console.log(err);
+        })
+        .finally(() => {
           editProfilePictureForm.renderLoading(false);
         });
     },
@@ -80,7 +98,6 @@ const editProfilePictureForm = new PopupWithForm(
 );
 
 const profilePictureEvent = new ProfilePicEvt(profilePicture);
-profilePictureEvent.addEventListener();
 // Image Review Popup
 const popupWithImage = new PopupWithImage("#open-image-modal");
 //Validator
@@ -106,34 +123,39 @@ const createCard = (data) => {
   const cardElement = new Card(
     data,
     "#card-template",
-    handleImageClick
+    handleImageClick,
+    api,
+    deletePopupForm
   ).generateCard();
   return cardElement;
 };
 //
+profilePictureEvent.addEventListener();
 userInfo.fetchAndSetUserInfo();
-
-api.getInitialCards().then((initialCards) => {
-  gallery = new Section(
-    {
-      data: initialCards,
-      renderer: (item) => {
-        const cardElement = createCard(item);
-        gallery.addItem(`append`, cardElement);
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    gallery = new Section(
+      {
+        data: initialCards,
+        renderer: (item) => {
+          const cardElement = createCard(item);
+          gallery.addItem(`append`, cardElement);
+        },
       },
-    },
-    ".gallery__list"
-  );
-  gallery.renderItems();
-});
+      ".gallery__list"
+    );
+    gallery.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 // Edit profile modal
 editProfileButton.addEventListener("click", () => {
-  api.getUserInfo().then((data) => {
-    nameInput.value = data.name;
-    jobInput.value = data.about;
-    editPopupForm.open();
-    formValidators[editPopupForm.form.getAttribute("name")].resetValidation();
-  });
+  nameInput.value = userInfo.getUserInfo().name;
+  jobInput.value = userInfo.getUserInfo().job;
+  editPopupForm.open();
+  formValidators[editPopupForm.form.getAttribute("name")].resetValidation();
 });
 
 //Edit profile picture modal

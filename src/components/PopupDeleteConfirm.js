@@ -1,22 +1,31 @@
 import Popup from "./Popup.js";
 export default class PopupDeleteConfirm extends Popup {
-  constructor(popupSelector, handleConfirmButtonEvent) {
+  constructor(popupSelector) {
     super(popupSelector);
     this._confirmButton = this._popupElt.querySelector(".modal__save-button");
-    this._handleConfirmButtonEvent = handleConfirmButtonEvent;
     this._confirmHandler = this._confirmHandler.bind(this);
+    this._saveButton = this._popupElt.querySelector(".modal__save-button");
   }
 
-  close() {
-    this._confirmButton.removeEventListener("click", this._confirmHandler);
-    super.close();
+  open(confirmCallback) {
+    this._confirmCallback = confirmCallback;
+    super.open();
   }
 
   _confirmHandler(evt) {
     evt.preventDefault();
-    console.log("bb");
-    this._handleConfirmButtonEvent();
+    if (this._confirmCallback) {
+      this._confirmCallback();
+    }
     super.close();
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._saveButton.textContent = "Saving...";
+    } else {
+      this._saveButton.textContent = "Save";
+    }
   }
 
   setEventListener() {

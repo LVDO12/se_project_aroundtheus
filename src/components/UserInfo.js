@@ -1,9 +1,9 @@
-import { api } from "../components/Api.js";
 export default class UserInfo {
-  constructor(nameSelector, jobSelector, pictureSelector) {
+  constructor(nameSelector, jobSelector, pictureSelector, api) {
     this._nameSelector = document.querySelector(nameSelector);
     this._jobSelector = document.querySelector(jobSelector);
     this._pictureSelector = document.querySelector(pictureSelector);
+    this._api = api;
   }
 
   getUserInfo() {
@@ -24,7 +24,7 @@ export default class UserInfo {
   }
 
   fetchAndSetUserInfo() {
-    api
+    this._api
       .getUserInfo()
       .then((data) => {
         this.setUserInfo({
@@ -35,6 +35,8 @@ export default class UserInfo {
           avatar: data.avatar,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

@@ -1,7 +1,5 @@
-import PopupDeleteConfirm from "./PopupDeleteConfirm";
-import { api } from "./Api";
 export default class Card {
-  constructor(data, cardSelector, handleImageClick) {
+  constructor(data, cardSelector, handleImageClick, api, deletePopupForm) {
     this._data = data;
     this.link = data.link;
     this.name = data.name;
@@ -12,6 +10,8 @@ export default class Card {
     this._likeButton = data.likeButton;
     this._deleteButton = data.deleteButton;
     this._handleImageClick = handleImageClick;
+    this._api = api;
+    this._deletePopupForm = deletePopupForm;
   }
 
   _getCardTemplate() {
@@ -36,21 +36,6 @@ export default class Card {
     return this._element;
   }
 
-  _handleLikeButton() {
-    this._likeButton.classList.toggle("card__like-button_active");
-    if (this.isLiked) {
-      api.removeLike(this._id).catch((err) => console.log(err));
-      this.isLiked = false;
-    } else {
-      api.addLike(this._id).catch((err) => console.log(err));
-      this.isLiked = true;
-    }
-  }
-
-  _handleDeleteButton() {
-    this._openDeteleConfirmPopup();
-  }
-
   _checkLikeStatus() {
     if (this.isLiked) {
       this._likeButton.classList.add("card__like-button_active");
@@ -59,22 +44,47 @@ export default class Card {
     }
   }
 
-  _openDeteleConfirmPopup() {
-    const deletePopup = new PopupDeleteConfirm("#delete-card-modal", () => {
-      this._handleConfirmDelete();
-    });
-    deletePopup.open();
+  _handleLikeButton() {
+    if (this.isLiked) {
+      this._api
+        .removeLike(this._id)
+        .then(() => {
+          this._likeButton.classList.toggle("card__like-button_active");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.isLiked = false;
+    } else {
+      this._api
+        .addLike(this._id)
+        .then(() => {
+          this._likeButton.classList.toggle("card__like-button_active");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.isLiked = true;
+    }
+  }
+
+  _handleDeleteButton() {
+    this._deletePopupForm.open(() => this._handleConfirmDelete());
   }
 
   _handleConfirmDelete() {
-    api
+    this._deletePopupForm.renderLoading(true);
+    this._api
       .deleteCard(this._id)
       .then(() => {
         this._element.remove();
         console.log("This post has been deleted");
       })
       .catch((err) => {
-        console.error("Error deleting card:", err);
+        console.log(err);
+      })
+      .finally(() => {
+        this._deletePopupForm.renderLoading(false);
       });
   }
 
