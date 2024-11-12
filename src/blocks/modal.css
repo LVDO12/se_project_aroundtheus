@@ -32,6 +32,14 @@
   height: 330px;
 }
 
+.modal_profile-picture__container {
+  height: 272px;
+}
+
+.modal_delete__container {
+  height: 181px;
+}
+
 .modal__title {
   margin: 0;
   margin-bottom: 54px;
@@ -40,6 +48,10 @@
   font-weight: 900;
   line-height: 29.05px;
   text-align: left;
+}
+
+.modal-delete__title {
+  margin-bottom: 38px;
 }
 
 .modal__form {
@@ -91,6 +103,10 @@
   width: 100%;
 }
 
+.modal-delete__save-button {
+  margin: 0;
+}
+
 .modal__save-button + .modal__save-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -138,10 +154,22 @@
     margin-bottom: 75px;
   }
 
+  .modal-delete__title {
+    margin-bottom: 38px;
+  }
+
   .modal__container {
     height: 322px;
     width: 282px;
     padding: 22px 25px;
+  }
+
+  .modal_profile-picture__container {
+    height: 272px;
+  }
+
+  .modal_delete__container {
+    height: 181px;
   }
 
   .modal__save-button {

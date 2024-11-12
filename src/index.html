@@ -20,20 +20,23 @@
       </header>
 
       <main class="content">
-        <section class="profile page__section">
-          <img
-            class="profile__picture"
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="Profile picture"
-          />
+        <section class="profile page__section" id="profile">
+          <div class="profile__picture">
+            <button class="profile-picture__edit-button" type="button"></button>
+            <img
+              class="profile__picture__image"
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="Profile picture"
+            />
+          </div>
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name" id="profile-name">Jacques Cousteau</h1>
             <button
               id="validation-modal"
               class="profile__edit-button"
               type="button"
             ></button>
-            <p class="profile__bio">Explorer</p>
+            <p class="profile__bio" id="profile-bio">Explorer</p>
           </div>
           <button
             id="validation-modal"
@@ -125,6 +128,29 @@
       </div>
     </div>
 
+    <div class="modal" id="edit-profile-picture-modal">
+      <div class="modal__container modal_profile-picture__container">
+        <p class="modal__title">Change profile picture</p>
+        <button class="modal__button modal__close-button"></button>
+        <form name="profile-picture-form" class="modal__form" novalidate>
+          <fieldset class="modal__form-set">
+            <label class="modal__form-field">
+              <input
+                type="url"
+                name="avatar"
+                class="modal__input"
+                placeholder="Image URL"
+                id="link-input"
+                required
+              />
+              <span class="modal__input-error link-input-error"></span>
+            </label>
+            <button class="modal__button modal__save-button">Save</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
     <div class="modal" id="open-image-modal">
       <div>
         <button
@@ -132,6 +158,18 @@
         ></button>
         <img src="" alt="" class="modal__image" />
         <p class="modal__image-caption"></p>
+      </div>
+    </div>
+
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container modal_delete__container">
+        <p class="modal__title modal-delete__title">Are you sure?</p>
+        <button class="modal__button modal__close-button"></button>
+        <button
+          class="modal__button modal__save-button modal-delete__save-button"
+        >
+          Yes
+        </button>
       </div>
     </div>
 
